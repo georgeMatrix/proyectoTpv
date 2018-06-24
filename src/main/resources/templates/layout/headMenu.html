@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" th:fragment="menu">
+    <!--
+Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+Tip 2: you can also add an image using data-image tag
+-->
+    <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+            PVT NIETO
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item active ">
+                <a class="nav-link" th:href="@{/inicio}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Tablero Inicial</p>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">person</i>Cargar Perfiles
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/getProvedor}">Provedor</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/getCategoria}">Categoria</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/getProducto}">Producto</a>
+                </div>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" th:href="@{/getVenta}">
+                    <i class="material-icons">Venta</i>
+                    <p>Venta</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
