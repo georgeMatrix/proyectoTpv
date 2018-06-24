@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--
+Template Name: Skaxis
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Skaxis | Pages | Full Width</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay light" style="background-image:url('../images/demo/backgrounds/01.png');"> 
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a th:href="@{/inicio}">Punto de venta Nieto</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <li><a th:href="@{/inicio}">Home</a></li>
+          <li class="active"><a class="drop" href="#">Pages</a>
+            <ul>
+              <li><a th:href="@{/getUnidadMedida}">Unidad de medida</a></li>
+              <li><a th:href="@{/getProvedor}">Provedor</a></li>
+              <li><a th:href="@{/getCategoria}">Categoria</a></li>
+              <li class="active"><a th:href="@{/getProducto}">Producto</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">Dropdown</a>
+            <ul>
+              <li><a href="#">Level 2</a></li>
+              <li class="active"><a th:href="@{/getVenta}">Venta</a>
+                <ul>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Level 2</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Link Text</a></li>
+          <li><a href="#">Link Text</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="breadcrumb" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Lorem</a></li>
+      <li><a href="#">Ipsum</a></li>
+      <li><a href="#">Dolor</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </div>
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+
+      <div id="comments">
+
+        <form th:action="@{/postProducto}" method="post">
+          <div class="one_third first">
+            <label for="clave">Clave <span>*</span></label>
+            <input th:maxlength="6" type="text" name="clave" id="clave" th:value="${modelGetProducto.clave}" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="sku">Sku <span>*</span></label>
+            <input th:maxlength="20" type="text" name="sku" id="sku" th:value="${modelGetProducto.sku}" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="skuVnpk">SkuVnpk <span>*</span></label>
+            <input th:maxlength="20" type="text" name="skuVnpk" id="skuVnpk" th:value="${modelGetProducto.skuVnpk}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="idProvedor">Proveedor <span>*</span></label>
+            <select th:field="${modelGetProvedorAgregars.idProvedor}" id="idProvedor">
+              <option value=""> Seleccione una opcion </option>
+              <option th:each="provedor : ${modelGetProvedorObteners}"
+                      th:value="${provedor.idProvedor}"
+                      th:utext="${provedor.nombre}"/>
+            </select>
+          </div>
+          <div class="one_third">
+            <label for="idCategoria">Categoria <span>*</span></label>
+            <select th:field="${modelGetCategoriaAgregars.idCategoria}" id="idCategoria">
+              <option value=""> Seleccione una opcion </option>
+              <option th:each="categoria : ${modelGetCategoriaObteners}"
+                      th:value="${categoria.idCategoria}"
+                      th:utext="${categoria.nombre}"/>
+            </select>
+          </div>
+          <div class="one_third">
+            <label for="idUnidadMedida">Unidad Medida <span>*</span></label>
+            <select th:field="${modelGetUnidadMedidaAgregars.idUnidadMedida}" id="idUnidadMedida">
+              <option value=""> Seleccione una opcion </option>
+              <option th:each="unidadMedida: ${modelGetUnidadMedidaObteners}"
+                      th:value="${unidadMedida.idUnidadMedida}"
+                      th:utext="${unidadMedida.nombre}"/>
+            </select>
+          </div>
+          <div class="one_third first">
+            <label for="descripcion">Descripcion <span>*</span></label>
+            <input th:maxlength="40" type="text" name="descripcion" id="descripcion" th:value="${modelGetProducto.descripcion}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="descripcionE">Descripcion E<span>*</span></label>
+            <input th:maxlength="120" type="text" name="descripcionE" id="descripcionE" th:value="${modelGetProducto.descripcionE}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="costo">Costo <span>*</span></label>
+            <input th:type="number" name="costo" id="costo" th:value="${modelGetProducto.costo}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="ivaCosto">Iva Costo<span>*</span></label>
+            <input th:type="number" name="ivaCosto" id="ivaCosto" th:value="${modelGetProducto.ivaCosto}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="iepsCosto">Ieps Costo<span>*</span></label>
+            <input th:type="number" name="iepsCosto" id="IepsCosto" th:value="${modelGetProducto.iepsCosto}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="totalCosto">Total Costo<span>*</span></label>
+            <input th:type="number" name="totalCosto" id="totalCosto" th:value="${modelGetProducto.totalCosto}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="precioMay">Precio Mayoreo<span>*</span></label>
+            <input th:type="number" name="precioMay" id="precioMay" th:value="${modelGetProducto.precioMay}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="ivaPrecioMay">Iva Precio Mayoreo<span>*</span></label>
+            <input th:type="number" name="ivaPrecioMay" id="ivaPrecioMay" th:value="${modelGetProducto.ivaPrecioMay}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="iepsPrecioMay">Ieps Precio Mayoreo<span>*</span></label>
+            <input th:type="number" name="iepsPrecioMay" id="iepsPrecioMay" th:value="${modelGetProducto.iepsPrecioMay}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="totalPrecioMay">Total Precio Mayoreo<span>*</span></label>
+            <input th:type="number" name="totalPrecioMay" id="totalPrecioMay" th:value="${modelGetProducto.totalPrecioMay}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="precioMm">Precio medio mayoreo <span>*</span></label>
+            <input th:type="number" name="precioMm" id="precioMm" th:value="${modelGetProducto.precioMm}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="ivaPrecioMm">Iva precio medio mayoreo<span>*</span></label>
+            <input th:type="number" name="ivaPrecioMm" id="ivaPrecioMm" th:value="${modelGetProducto.ivaPrecioMm}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="iepsPrecioMm">Ieps precio medio mayoreo<span>*</span></label>
+            <input th:type="number" name="ivaPrecioMm" id="iepsPrecioMm" th:value="${modelGetProducto.iepsPrecioMm}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="totalPrecioMm">Total precio medio mayoreo<span>*</span></label>
+            <input th:type="number" name="totalPrecioMm" id="totalPrecioMm" th:value="${modelGetProducto.totalPrecioMm}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="precioRetail">Precio retail<span>*</span></label>
+            <input th:type="number" name="precioRetail" id="precioRetail" th:value="${modelGetProducto.precioRetail}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="ivaPrecioRetail">Iva precio retail<span>*</span></label>
+            <input th:type="number" name="ivaPrecioRetail" id="ivaPrecioRetail" th:value="${modelGetProducto.ivaPrecioRetail}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="iepsPrecioRetail">Ieps precio retail<span>*</span></label>
+            <input th:type="number" name="iepsPrecioRetail" id="iepsPrecioRetail" th:value="${modelGetProducto.iepsPrecioRetail}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="totalPrecioRetail">Total precio retail<span>*</span></label>
+            <input th:type="number" name="totalPrecioRetail" id="totalPrecioRetail" th:value="${modelGetProducto.totalPrecioRetail}" size="22">
+          </div>
+          <div class="one_third first">
+            <label for="existencia">Existencia<span>*</span></label>
+            <input th:type="number" name="existencia" id="existencia" th:value="${modelGetProducto.existencia}" size="22">
+          </div>
+          <div class="one_third">
+            <label for="activoInactivo">activoInactivo<span>*</span></label>
+            <input th:type="number" name="activoInactivo" id="activoInactivo" th:value="${modelGetProducto.activoInactivo}" size="22">
+          </div>
+
+          <div class="block clear">
+            <input type="submit" name="submit" value="Cargar Informacion">
+            &nbsp;
+            <input type="reset" name="reset" value="Borrar Formulario">
+            &nbsp;
+            <a th:href="@{/getProductoTable}">Ver Datos Almacenados</a>
+          </div>
+        </form>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay coloured" style="background-image:url('../images/demo/backgrounds/02.png');">
+  <article class="hoc cta clear"> 
+    <!-- ################################################################################################ -->
+    <h6 class="three_quarter first">Quis orci neque praesent posuere venenatis tempor</h6>
+    <footer class="one_quarter"><a class="btn" href="#">Mauris sit rhoncus &raquo;</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_quarter first">
+      <h6 class="heading">Mauris ac pulvinar</h6>
+      <ul class="nospace btmspace-30 linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Urna mauris suscipit</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Nunc condimentum ut donec</a></li>
+        <li><a href="#">Et tempus metus morbi platea</a></li>
+        <li><a href="#">Sed orci eu urna tristique</a></li>
+        <li><a href="#">Euismod ac in elit quisque</a></li>
+        <li><a href="#">Et porta odio ut gravida</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Feugiat imperdiet</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Augue sit amet ligula</a></li>
+        <li><a href="#">Tristique iaculis semper</a></li>
+        <li><a href="#">Lorem suscipit maecenas</a></li>
+        <li><a href="#">Ultricies feugiat libero</a></li>
+        <li><a href="#">In gravida felis consectetur</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Turpis sed non enim</h6>
+      <p class="nospace btmspace-15">Convallis laoreet mi quis ornare ante nam pretium dignissim justo amet consequat.</p>
+      <form method="post" action="#">
+        <fieldset>
+          <legend>Newsletter:</legend>
+          <input class="btmspace-15" type="text" value="" placeholder="Name">
+          <input class="btmspace-15" type="text" value="" placeholder="Email">
+          <button type="submit" value="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
